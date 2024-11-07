@@ -1,0 +1,21 @@
+#wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    height: auto;
+    width:auto;
+    margin: 30px;
+}
+
+#tela-jogo {
+    width: 60%;
+    height: 100%;
+    background-color: brown;
+}
+
+#menu {
+    width: 40%;
+    height: 100%;
+    background-color: brown;
+}
+
