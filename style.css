@@ -125,9 +125,10 @@ body, html {
 #instrucoes {
     position: relative;
     width: 60%;
-    height:80%;
+    height:70%;
     border-radius: 20px;
     background-color: beige;
+    padding: 40px;
 }
 
 .fecha-popup {
