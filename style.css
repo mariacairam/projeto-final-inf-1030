@@ -98,9 +98,14 @@ body, html {
 #atividade {
     position: relative;
     width: 60%;
-    height:80%;
+    height:70%;
     border-radius: 20px;
     background-color: beige;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 48px;
 }
 
 #pop-up-instrucoes {
@@ -145,3 +150,16 @@ body, html {
 .fecha-popup:hover {
     cursor: pointer;
 }
+
+#conteiner-atividades {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.atividade-n {
+    background-color: rgb(13, 101, 173);
+    width: 33.3%;
+}
+
