@@ -9,9 +9,21 @@
 <body>
     <div id="wrapper">
         <div id="tela-jogo">
-            <div id="imagem-animacao">
-                <img src="assets\placeholder-anim.png"><img>
+            <div id="pop-up-instrucoes-no-jogo">
+                <div id="interrogacao">?</div>
+                <div id="instrucoes-no-jogo">
+                (Use a tecla [ESPAÇO] para pedalar!)     
+                </br>           
+                Após selecionar uma atividade, faça o ciclista gerar energia suficiente para realizar a mesma!               
+                A quantidade necessária de energia é revelada ao final da rodada. 
+                </br>          
+                Consegue gerar energia suficiente?
+                </div>
             </div>
+            <div id="imagem-animacao">
+                <img id="frame" src="assets\placeholder-anim2.png" alt="Animação">
+            </div>
+            
         </div>
         <div id="menu">
             <div id="logo">
@@ -25,6 +37,19 @@
                     INSTRUÇÕES
                 </button>
             </div>
+            
+        </div>
+        <div id="conversor">
+            <div id="tela-conversor">
+                <div id="resumo-energia">
+                    RESUMO
+                </div>
+            </div>
+            <div id="botoes-conversor">
+                <button id="botao-conversor">
+                    CONVERTER
+                </button>
+            </div>
         </div>
     </div>
     <div id="pop-up-atividade">
@@ -34,16 +59,41 @@
             </div>
             <div>Escolha qual atividade deseja realizar após converter energia criada:</div>
             <div id="conteiner-atividades">
-                <div id="atividade-1" class="atividade-n"> Atividade 1</div>
-                <div id="atividade-2" class="atividade-n"> Atividade 2</div>
-                <div id="atividade-3" class="atividade-n"> Atividade 3</div>
+                <div id="atividade-1" class="atividade-n"> 
+                    <img src="assets\placeholder-ativ1.png" alt="Atividade 1" class="imagem-atividade">
+                </div>
+                <div id="atividade-2" class="atividade-n"> 
+                    <img src="assets\placeholder-ativ2.png" alt="Atividade 2" class="imagem-atividade">
+                </div>
+                <div id="atividade-3" class="atividade-n"> 
+                    <img src="assets\placeholder-ativ2.png" alt="Atividade 3" class="imagem-atividade">
+                </div>
             </div>
+
+            
         </div>
     </div>
     <div id="pop-up-instrucoes">
         <div id="instrucoes">
+            (Use a tecla [ESPAÇO] para pedalar!)                
+            Após selecionar uma atividade, faça o ciclista gerar energia suficiente para realizar a mesma!               
+            A quantidade necessária de energia é revelada ao final da rodada.        
+            Consegue gerar energia suficiente?
             <div class="fecha-popup">
                 X
+            </div>
+        </div>
+    </div>
+    <div id="pop-up-conversora">
+        <div id="conversao-de-energia">
+            Energia
+            <div id="botoes-conversao-popup">
+                <button id="botao-jogar-novamente">
+                    JOGAR NOVAMENTE
+                </button>
+                <button id="botao-voltar-menu">
+                    VOLTAR AO MENU
+                </button>
             </div>
         </div>
     </div>
