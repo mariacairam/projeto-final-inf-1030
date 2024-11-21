@@ -154,14 +154,13 @@ body, html {
 }
 
 #conteiner-atividades {
-    height: 100%;
+    height: 60%;
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
 .atividade-n {
-    background-color: rgb(13, 101, 173);
     width: 33.3%;
     border-radius: 10px;
 }

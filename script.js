@@ -14,6 +14,9 @@ var popupConversor = document.getElementById("pop-up-conversora");
 var botaoConversor = document.getElementById("botao-conversor");
 var botaoRetornar = document.getElementById("botao-voltar-menu");
 var botaoJogarNovo = document.getElementById("botao-jogar-novamente");
+var resumoEnergia = document.getElementById("resumo-energia");
+var mensagemFinal = document.getElementById("mensagem-final");
+var energiaGerada = document.getElementById("energia");
 
 var frames = ["assets/placeholder-anim.png", "assets/placeholder-anim2.png"];
 
@@ -25,8 +28,10 @@ var listaEnergia = {
     "atividade-3": 6000
 }
 
+var atividadeEscolhida = null;
 var energiaAcumulada = 0;
 
+//abrir e fechar pop-ups de escolha de atividade e instruções
 var popupAberto = null;
 
 function mostrarPopup(elemento){
@@ -45,9 +50,10 @@ for (let i = 0; i < fechaPopup.length; i++) {
     fechaPopup[i].onclick = () => {fecharPopup(popupAberto)};
 }
 
-
+//função entrar no jogo
 function jogar(elemento, atividade){
-    console.log(listaEnergia[atividade.getAttribute('id')]);
+    atividadeEscolhida = atividade.getAttribute('id');
+    console.log(listaEnergia[atividadeEscolhida]);
     elemento.style.display = "none";
     conversor.style.display = "flex";
     menu.style.display = "none";
@@ -57,6 +63,7 @@ for (let i = 0; i < atividades.length; i++) {
     atividades[i].onclick = () => {jogar(popupAberto, atividades[i])};
 }
 
+//botão de instruções (hover)
 function mostrarInstrucoes(){
     instrucoes.style.display = "flex";
 }
@@ -67,37 +74,73 @@ function fecharInstrucoes(){
 }
 interrogacao.onmouseleave = fecharInstrucoes;
 
-
+//animando frames quando a tecla espaço é clicada
 function animarFrames(){
-    frameAtual = (frameAtual + 1) % frames.length;
-    frame.src = frames[frameAtual];
-    console.log("Frame atual:", frameAtual, "SRC:", frame.src);
+    if(atividadeEscolhida){
+        frameAtual = (frameAtual + 1) % frames.length;
+        frame.src = frames[frameAtual];
+        energiaAcumulada += 1;
+        resumoEnergia.innerHTML = "A energia produzida foi: " + energiaAcumulada + " Watts";
+        console.log("Frame atual:", frameAtual, "SRC:", frame.src);
+    }
 }
 
-document.addEventListener("keydown", function(event) {
+let ultimoInstante = 0;
+let timeout;
+
+document.addEventListener("keydown", function (event) {
     if (event.code === "Space") {
         event.preventDefault();
-        animarFrames();
+        animarFrames(); 
+
+        const tempoAtual = Date.now();
+
+        if (ultimoInstante !== 0) {
+            const intervalo = tempoAtual - ultimoInstante;
+
+            if (intervalo > 250) {
+                abrirConversor("Que pena! você não foi rápido o suficiente para gerar energia.");
+                return;
+            }
+        }
+
+
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            abrirConversor("Que pena! você não foi rápido o suficiente para gerar energia.");
+        }, 250);
+
+        ultimoInstante = tempoAtual;
     }
 });
 
-function abrirConversor(){
-    popupConversor.style.display = "flex";
-}
-botaoConversor.onclick = abrirConversor;
 
-function retornarMenu(){
+
+//abrir pop-up de painel conversor
+function abrirConversor(mensagem){
+    ultimoInstante = 0;
+    intervalo = 0;
     frameAtual = 0;
+    mensagemFinal.innerHTML = mensagem;
+    energiaGerada.innerHTML = "Você gerou " + energiaAcumulada + "Watts de " + listaEnergia[atividadeEscolhida] + " KWatts";
+    popupConversor.style.display = "flex";
     energiaAcumulada = 0;
+}
+botaoConversor.onclick = () => {abrirConversor("Resumo da rodada:")};
+
+
+//botão retornar ao menu inicial
+function retornarMenu(){
+    atividadeEscolhida = null;
     popupConversor.style.display = "none";
     conversor.style.display = "none";
     menu.style.display = "flex";
 }
 botaoRetornar.onclick = retornarMenu;
 
+//botão jjogar novamente mesma atividade
 function jogarNovamente(){
-    frameAtual = 0;
-    energiaAcumulada = 0;
+    resumoEnergia.innerHTML = "A energia produzida foi: " + energiaAcumulada + " Watts";
     popupConversor.style.display = "none";
 }
 botaoJogarNovo.onclick = jogarNovamente;
