@@ -18,7 +18,9 @@ var resumoEnergia = document.getElementById("resumo-energia");
 var mensagemFinal = document.getElementById("mensagem-final");
 var energiaGerada = document.getElementById("energia");
 
-var frames = ["assets/placeholder-anim.png", "assets/placeholder-anim2.png"];
+var frames = ["assets/frame1.png", "assets/frame2.png"];
+
+modoJogo = null;
 
 var frameAtual = 0;
 
@@ -57,6 +59,7 @@ function jogar(elemento, atividade){
     elemento.style.display = "none";
     conversor.style.display = "flex";
     menu.style.display = "none";
+    modoJogo = true;
 }
 
 for (let i = 0; i < atividades.length; i++) {
@@ -65,12 +68,13 @@ for (let i = 0; i < atividades.length; i++) {
 
 //botão de instruções (hover)
 function mostrarInstrucoes(){
-    instrucoes.style.display = "flex";
+    instrucoes.style.opacity = "1";
+
 }
 interrogacao.onmouseenter = mostrarInstrucoes;
 
 function fecharInstrucoes(){
-    instrucoes.style.display = "none";
+    instrucoes.style.opacity = "0";
 }
 interrogacao.onmouseleave = fecharInstrucoes;
 
@@ -80,7 +84,7 @@ function animarFrames(){
         frameAtual = (frameAtual + 1) % frames.length;
         frame.src = frames[frameAtual];
         energiaAcumulada += 1;
-        resumoEnergia.innerHTML = "A energia produzida foi: " + energiaAcumulada + " Watts";
+        resumoEnergia.innerHTML = energiaAcumulada;
         console.log("Frame atual:", frameAtual, "SRC:", frame.src);
     }
 }
@@ -89,7 +93,7 @@ let ultimoInstante = 0;
 let timeout;
 
 document.addEventListener("keydown", function (event) {
-    if (event.code === "Space") {
+    if (event.code === "Space" && modoJogo) {
         event.preventDefault();
         animarFrames(); 
 
@@ -104,7 +108,6 @@ document.addEventListener("keydown", function (event) {
             }
         }
 
-
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             abrirConversor("Que pena! você não foi rápido o suficiente para gerar energia.");
@@ -114,10 +117,9 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-
-
 //abrir pop-up de painel conversor
 function abrirConversor(mensagem){
+    modoJogo = null;
     ultimoInstante = 0;
     intervalo = 0;
     frameAtual = 0;
@@ -132,15 +134,18 @@ botaoConversor.onclick = () => {abrirConversor("Resumo da rodada:")};
 //botão retornar ao menu inicial
 function retornarMenu(){
     atividadeEscolhida = null;
+    resumoEnergia.innerHTML = energiaAcumulada ;
     popupConversor.style.display = "none";
     conversor.style.display = "none";
     menu.style.display = "flex";
+
 }
 botaoRetornar.onclick = retornarMenu;
 
 //botão jjogar novamente mesma atividade
 function jogarNovamente(){
-    resumoEnergia.innerHTML = "A energia produzida foi: " + energiaAcumulada + " Watts";
+    modoJogo = true;
+    resumoEnergia.innerHTML = energiaAcumulada ;
     popupConversor.style.display = "none";
 }
 botaoJogarNovo.onclick = jogarNovamente;

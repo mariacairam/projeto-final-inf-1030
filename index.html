@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Projeto Final</title>
 </head>
 <body>
@@ -21,32 +24,35 @@
                 </div>
             </div>
             <div id="imagem-animacao">
-                <img id="frame" src="assets\placeholder-anim2.png" alt="Animação">
+                <img id="frame" src="assets\frame1.png" alt="Animação">
             </div>
             
         </div>
         <div id="menu">
             <div id="logo">
-                PEDALA!
+                <span class="sour-gummy-title">PEDALA!</span>
+                <span id="subtitulo">Quanto que o seu esforço vale?</span>
             </div>
             <div id="botoes">
-                <button id="botao-jogar">
+                <button id="botao-jogar" class="sour-gummy-title">
                     JOGAR
                 </button>
-                <button id="botao-instrucoes">
+                <button id="botao-instrucoes" class="sour-gummy-title">
                     INSTRUÇÕES
                 </button>
             </div>
             
         </div>
         <div id="conversor">
-            <div id="tela-conversor">
+            <div id="legenda-conversor">Resumo de energia:</div>
+            <div id="tela-conversor" class="sour-gummy-title">
                 <div id="resumo-energia">
-                    RESUMO
+                    0
                 </div>
+                <span>Watts</span>
             </div>
             <div id="botoes-conversor">
-                <button id="botao-conversor">
+                <button id="botao-conversor" class="sour-gummy-title">
                     CONVERTER
                 </button>
             </div>
@@ -57,7 +63,10 @@
             <div class="fecha-popup">
                 X
             </div>
-            <div>Escolha qual atividade deseja realizar após converter energia criada:</div>
+            <div>
+                <span id="pergunta-chave" class="sour-gummy-title">Você sabe quanta energia as atividades diárias gastam?</span>
+                <span>Escolha qual atividade deseja realizar após converter energia criada:</span>
+            </div>
             <div id="conteiner-atividades">
                 <div id="atividade-1" class="atividade-n"> 
                     <img src="assets\IMG_2816.png" alt="Atividade 1" class="imagem-atividade">
