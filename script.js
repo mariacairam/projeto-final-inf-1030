@@ -9,7 +9,6 @@ var menu = document.getElementById("menu");
 var atividades = document.querySelectorAll(".atividade-n");
 var frame = document.getElementById("frame");
 var interrogacao = document.getElementById("interrogacao");
-var instrucoes = document.getElementById("instrucoes-no-jogo");
 var popupConversor = document.getElementById("pop-up-conversora");
 var botaoConversor = document.getElementById("botao-conversor");
 var botaoRetornar = document.getElementById("botao-voltar-menu");
@@ -25,10 +24,19 @@ modoJogo = null;
 var frameAtual = 0;
 
 var listaEnergia = {
-    "atividade-1" : 3000,
-    "atividade-2" : 10000,
-    "atividade-3": 6000
-}
+    "atividade-1": {
+        nome: "jogar League of Legends",
+        energia: 500
+    },
+    "atividade-2": {
+        nome: "usar ChatGPT",
+        energia: 10
+    },
+    "atividade-3": {
+        nome: "usar ar-condicionado",
+        energia: 670
+    }
+};
 
 var atividadeEscolhida = null;
 var energiaAcumulada = 0;
@@ -55,7 +63,6 @@ for (let i = 0; i < fechaPopup.length; i++) {
 //função entrar no jogo
 function jogar(elemento, atividade){
     atividadeEscolhida = atividade.getAttribute('id');
-    console.log(listaEnergia[atividadeEscolhida]);
     elemento.style.display = "none";
     conversor.style.display = "flex";
     menu.style.display = "none";
@@ -65,18 +72,6 @@ function jogar(elemento, atividade){
 for (let i = 0; i < atividades.length; i++) {
     atividades[i].onclick = () => {jogar(popupAberto, atividades[i])};
 }
-
-//botão de instruções (hover)
-function mostrarInstrucoes(){
-    instrucoes.style.opacity = "1";
-
-}
-interrogacao.onmouseenter = mostrarInstrucoes;
-
-function fecharInstrucoes(){
-    instrucoes.style.opacity = "0";
-}
-interrogacao.onmouseleave = fecharInstrucoes;
 
 //animando frames quando a tecla espaço é clicada
 function animarFrames(){
@@ -89,7 +84,6 @@ function animarFrames(){
     }
 }
 
-let ultimoInstante = 0;
 let timeout;
 
 document.addEventListener("keydown", function (event) {
@@ -97,34 +91,27 @@ document.addEventListener("keydown", function (event) {
         event.preventDefault();
         animarFrames(); 
 
-        const tempoAtual = Date.now();
-
-        if (ultimoInstante !== 0) {
-            const intervalo = tempoAtual - ultimoInstante;
-
-            if (intervalo > 250) {
-                abrirConversor("Que pena! você não foi rápido o suficiente para gerar energia.");
-                return;
-            }
+        if (energiaAcumulada == listaEnergia[atividadeEscolhida].energia){
+            clearTimeout(timeout);
+            abrirConversor("Parabéns! você gerou energia suficiente para realizar sua atividade");
         }
 
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            abrirConversor("Que pena! você não foi rápido o suficiente para gerar energia.");
-        }, 250);
-
-        ultimoInstante = tempoAtual;
+        else {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                abrirConversor("Que pena! você não foi rápido o suficiente para gerar energia.");
+            }, 250);
+        }
     }
 });
 
 //abrir pop-up de painel conversor
 function abrirConversor(mensagem){
     modoJogo = null;
-    ultimoInstante = 0;
-    intervalo = 0;
     frameAtual = 0;
     mensagemFinal.innerHTML = mensagem;
-    energiaGerada.innerHTML = "Você gerou " + energiaAcumulada + "Watts de " + listaEnergia[atividadeEscolhida] + " KWatts";
+    resultado = 0.0389*0.365*listaEnergia[atividadeEscolhida].energia;
+    energiaGerada.innerHTML = "Você gerou " + energiaAcumulada + " Watts de " + listaEnergia[atividadeEscolhida].energia + " Watts necessários para " + listaEnergia[atividadeEscolhida].nome + "! Agora parece muito, né? Essa energia toda é transformada em carbono na atmosfera. Fazendo todo dia essa atividade, você libera " + parseFloat(resultado.toFixed(1)) + " kg de CO2." ;
     popupConversor.style.display = "flex";
     energiaAcumulada = 0;
 }

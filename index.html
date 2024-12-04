@@ -17,7 +17,8 @@
                 <div id="instrucoes-no-jogo">
                 (Use a tecla [ESPAÇO] para pedalar!)     
                 </br>           
-                Após selecionar uma atividade, faça o ciclista gerar energia suficiente para realizar a mesma sem pausas!               
+                Após selecionar uma atividade, faça o ciclista gerar energia suficiente para realizar a mesma sem pausas!
+                Fim de jogo é decretado se parar de pedalar sem completar a energia!       
                 A quantidade necessária de energia é revelada ao final da rodada. 
                 </br>          
                 Consegue gerar energia suficiente?
@@ -30,8 +31,7 @@
         </div>
         <div id="menu">
             <div id="logo">
-                <span class="sour-gummy-title">PEDALA!</span>
-                <span id="subtitulo">Quanto que o seu esforço vale?</span>
+                <img id="frame" src="assets\LogoSlogan.svg" alt="Animação">
             </div>
             <div id="botoes">
                 <button id="botao-jogar" class="sour-gummy-title">
@@ -84,10 +84,19 @@
     </div>
     <div id="pop-up-instrucoes">
         <div id="instrucoes">
-            (Use a tecla [ESPAÇO] para pedalar!)                
-            Após selecionar uma atividade, faça o ciclista gerar energia suficiente para realizar a mesma sem pausas!               
-            A quantidade necessária de energia é revelada ao final da rodada.        
-            Consegue gerar energia suficiente?
+            <div class="passo-n" >
+                <span class="titulo-passo sour-gummy-title">1</span>
+                <span>Após selecionar uma atividade, use a tecla [ESPAÇO] para pedalar!</span>
+            </div>
+            <div class="passo-n" >
+                <span class="titulo-passo sour-gummy-title">2</span>
+                <span>Não pare de teclar, faça o ciclista gerar energia suficiente para realizar a atividade sem pausas!</span>
+            </div>
+            <div class="passo-n" >
+                <span class="titulo-passo  sour-gummy-title">3</span>
+                <span>A quantidade necessária de energia é revelada ao final da rodada.        
+            Consegue gerar energia suficiente?</span>
+            </div>
             <div class="fecha-popup">
                 X
             </div>
@@ -95,17 +104,19 @@
     </div>
     <div id="pop-up-conversora">
         <div id="conversao-de-energia">
-            <div id="mensagem-final">
+            <div id="mensagem">
+                <div id="mensagem-final" class="sour-gummy-title">
 
-            </div>
-            <div id="energia">
-
+                </div>
+                <div id="energia">
+    
+                </div>
             </div>
             <div id="botoes-conversao-popup">
-                <button id="botao-jogar-novamente">
+                <button id="botao-jogar-novamente" class="sour-gummy-title">
                     JOGAR NOVAMENTE
                 </button>
-                <button id="botao-voltar-menu">
+                <button id="botao-voltar-menu" class="sour-gummy-title">
                     VOLTAR AO MENU
                 </button>
             </div>

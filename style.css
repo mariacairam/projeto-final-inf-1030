@@ -65,7 +65,7 @@ body, html {
 }
 
 #logo {
-    height: 50%;
+    height: 60%;
     width:100%;
     background-color: rgb(13, 101, 173);
     color: beige;
@@ -77,9 +77,8 @@ body, html {
     align-items: center;
 }
 
-#subtitulo{
-    font-size: 18px;
-    font-style: normal;
+#logo img {
+    width: 80%;
 }
 
 #botoes {
@@ -174,10 +173,34 @@ body, html {
 #instrucoes {
     position: relative;
     width: 60%;
-    height:70%;
+    height:40%;
     border-radius: 20px;
     background-color: beige;
     padding: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:16px;
+}
+
+.passo-n {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 33.3%;
+    gap: 8px;
+}
+
+.titulo-passo {
+    text-align: center;
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+    font-size: 52px;
+    padding: 4px;
+    color: beige;
+    background-color: rgb(13, 101, 173);
 }
 
 .fecha-popup {
@@ -325,8 +348,12 @@ body, html {
 #interrogacao:hover {
     background-color: beige;
     border: 2px solid rgb(13, 101, 173);
-    color: rgb(13, 101, 173);;
+    color: rgb(13, 101, 173);
     cursor: pointer;
+}
+
+#interrogacao:hover ~ #instrucoes-no-jogo{
+    opacity: 1;
 }
 
 #instrucoes-no-jogo {
@@ -356,7 +383,7 @@ body, html {
 
 #conversao-de-energia {
     width: 60%;
-    height:70%;
+    height:60%;
     border-radius: 20px;
     background-color: beige;
     font-size: 20px;
@@ -368,6 +395,7 @@ body, html {
 
 #botoes-conversao-popup {
     width:100%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -380,17 +408,29 @@ body, html {
 }
 
 #botoes-conversao-popup button {
+    color: beige;
+    height: 100%;
     border-radius: 15px;
     padding: 8px;
-    background-color: rgb(127, 197, 255);
+    background-color: rgb(13, 101, 173);
     font-size: 32px;
-    width: 60%;
+    width: 50%;
     border: none;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 #botoes-conversao-popup button:hover {
-    background-color: rgb(13, 101, 173);
+    background-color: rgb(5, 65, 114);
     color: beige;
     cursor: pointer;
+}
+
+#mensagem-final {
+    font-size: 24px;
+}
+
+#mensagem {
+    display: flex;
+    flex-direction: column;
+    gap:8px;
 }
