@@ -30,7 +30,7 @@ var listaEnergia = {
     },
     "atividade-2": {
         nome: "usar ChatGPT",
-        energia: 10
+        energia: 350
     },
     "atividade-3": {
         nome: "usar ar-condicionado",
